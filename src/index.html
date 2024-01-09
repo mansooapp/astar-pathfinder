@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>A-Star Simulator</title>
+  <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+</head>
+
+<body>
+  <script id="toggle-switch" type="text/template">
+    <label>
+      <span>{label}</span>
+      <input role="switch" type="checkbox" />
+    </label>
+  </script>
+
+  <!-- <script type="text/javascript" src="./components/toggleSwitch/index.js"></script> -->
+  <script type="module" src="./components/toggleSwitch/index.js"></script>
+  <script type="text/javascript">
+    function handleChangeDebug(evt) {
+      evt.target.value = evt.target.value === 'on' ? 'off' : 'on';
+      console.log(evt.target.value);
+
+      if (evt.target.value === 'on') {
+        window.MapSearch.options.debug = true;
+      } else {
+        window.MapSearch.options.debug = false;
+      }
+    }
+
+    function handleChangeAllowDiagonal(evt) {
+      evt.target.value = evt.target.value === 'on' ? 'off' : 'on';
+      console.log(evt.target.value);
+
+      if (evt.target.value === 'on') {
+        window.MapSearch.options.allowDiagonal = true;
+      } else {
+        window.MapSearch.options.allowDiagonal = false;
+      }
+    }
+
+    function handleChangeKeepTrackingPath(evt) {
+      evt.target.value = evt.target.value === 'on' ? 'off' : 'on';
+      console.log(evt.target.value);
+
+      if (evt.target.value === 'on') {
+        window.MapSearch.options.keepTrackingPath = true;
+      } else {
+        window.MapSearch.options.keepTrackingPath = false;
+      }
+    }
+  </script>
+
+  <div id="options-container">
+    <div id="options-header" onclick="handleClickHideOptions(event)">
+      Options
+    </div>
+    <div id="options">
+      <div>
+        <!-- <toggle-switch label="DEBUG" onClick="handleChangeDebug(event)"></toggle-switch> -->
+        <toggle-switch label="Allow Diagonal" onClick="handleChangeAllowDiagonal(event)"></toggle-switch>
+        <toggle-switch id="keep-tracking-path" label="Keep Tracking Path" onClick="handleChangeKeepTrackingPath(event)"
+          value="on"></toggle-switch>
+      </div>
+    </div>
+  </div>
+
+  <div id="container">
+    <div>
+      <div id="astar-map">Initialize Map ...</div>
+    </div>
+  </div>
+
+  <template id="template-cell">
+    <div class="cell">
+      <div>
+        <div id="g"></div>
+        <div id="h"></div>
+      </div>
+      <div>
+        <div></div>
+        <div id="f"></div>
+      </div>
+    </div>
+  </template>
+
+  <script type="text/javascript" src="./assets/js/astar.js"></script>
+  <script type="text/javascript" src="./assets/js/custom_maps.js"></script>
+  <script type="text/javascript" src="./assets/js/map.js"></script>
+</body>
+
+</html>
